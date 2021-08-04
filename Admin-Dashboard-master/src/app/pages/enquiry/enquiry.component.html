@@ -35,7 +35,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Subject</th>
-                <th scope="col">Message</th>
+                <!-- <th scope="col">Message</th> -->
                 <th scope="col">Enquired Date</th>
                 </tr>
                 </thead>
@@ -44,7 +44,7 @@
                     <td>{{user.name}}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.subject }}</td>
-                    <td id="description">{{ user.message }}</td>
+                    <!-- <td id="description">{{ user.message }}</td> -->
                     <td>{{ user.creation_date| date:'fullDate'}}</td>
                     <td><a (click)="sendResponse(user)"><ion-icon name="mail"></ion-icon></a> </td>
                 </tr>
@@ -52,7 +52,7 @@
                     <td>{{user.name}}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.subject }}</td>
-                    <td id="description">{{ user.message }}</td>
+                    <!-- <td id="description">{{ user.message }}</td> -->
                     <td>{{ user.creation_date| date:'fullDate'}}</td>
                     <td><a (click)="sendResponse(user)"><ion-icon name="mail"></ion-icon></a> </td>
                 </tr>

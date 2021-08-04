@@ -42,7 +42,18 @@
             <label for="" class="label col-lg-2 col-form-label">Attachment</label>
             <div class='col-lg-10'>    
              <input class="form-control " type="file" (change)="selectImage($event)"  style="height: 2.6rem;width:50em"  placeholder="Image" multiple ><br>
-             <output id="list"></output>
+          
+              <ul
+                class="list-group "
+                *ngFor="let file of attachment; let i=index;"
+              >
+                <li class="list-group-item">
+                  <a style='text-decoration: none;' href="{{ file.url }}">{{ file.name }}</a>
+                  <a (click)="removeAttachment(i)"class="plus">
+                    <ion-icon name="close"></ion-icon>
+                </a>
+                </li> 
+              </ul>
             </div>
             </div>
           <div class="form-group row">

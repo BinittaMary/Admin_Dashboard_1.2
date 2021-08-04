@@ -107,5 +107,7 @@ export class EnquiryResponseComponent implements OnInit {
   closeForm(){
     this.router.navigate(['../Enquires'], { relativeTo: this.route });
   }
-
+  removeAttachment(id : any){
+    this.attachment.splice(id,  1);
+  }
 }

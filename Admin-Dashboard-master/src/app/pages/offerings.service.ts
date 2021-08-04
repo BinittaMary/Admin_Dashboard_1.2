@@ -12,6 +12,10 @@ export class OfferingsService {
     return this.http.get('http://localhost:5000/partnershipapplicationList')
   };
 
+  getCoperateApplns(){
+    return this.http.get('http://localhost:5000/CorporateapplicationList')
+  };
+
   getEnquires(){
     return this.http.get('http://localhost:5000/EnquiryList')
   };

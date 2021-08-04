@@ -9,7 +9,9 @@ const CourseRegistrationdata = require('./src/modal/CourseRegistrationData');
 const Testimonialdata = require('./src/modal/TestimonialData');
 const StaffData = require('./src/modal/Staffdata');
 const PartnershipApplicationdata = require('./src/modal/newpartnerForm');
+const CorporateApplicationdata = require('./src/modal/newcorporateForm');
 const EnquiryData = require('./src/modal/enquiryForm');
+const SignUpData = require('./src/modal/SignupData');
 const nodemailer = require('nodemailer');
 
 
@@ -84,6 +86,31 @@ app.get('/registercourseList',function(req,res){
       });
 });
 
+app.get('/registercourseAggr',function(req,res){
+  let date_ob = new Date();  
+  date_ob.setMonth(date_ob.getMonth()-4);
+  console.log(date_ob)
+  CourseRegistrationdata.aggregate([
+    {
+      $match: {
+        creation_date: {
+          $gte: date_ob
+        }
+      }
+    },
+    {
+        $group:
+        {
+            _id: { course_title: "$course_title" },
+            totalCourseRegstrn: { $sum: 1 }
+        }
+    }
+])
+  .then(function(cousrseRegs){
+      res.send(cousrseRegs);
+      });
+});
+
 app.get('/EnquiryList',function(req,res){
   EnquiryData.find().sort({ _id : -1 })
   .then(function(Enquires){
@@ -91,6 +118,19 @@ app.get('/EnquiryList',function(req,res){
       });
 });
 
+app.get('/AdminUserList',function(req,res){
+  SignUpData.find().sort({ firstname : -1 })
+  .then(function(users){
+      res.send(users);
+      });
+});
+app.get('/AdminUser/:id',  (req, res) => {        
+  const id = req.params.id;
+  SignUpData.findOne({"_id":id})
+    .then((user)=>{
+        res.send(user);
+    });
+})
 
 app.post('/Enquiry/sendmail',verifyToken,(req,res)=>{
   res.header("Access-Control-Allow-Origin","*")
@@ -210,9 +250,18 @@ app.get('/partnershipapplicationList',function(req,res){
       });
 });
 
+
+app.get('/CorporateapplicationList',function(req,res){
+  CorporateApplicationdata.find().sort({ _id : -1 })
+  .then(function(corporateapplication){
+      res.send(corporateapplication);
+      });
+});
+
 app.post('/registercourse',function(req,res){
     res.header("Access-Control-Allow-Origin","*")
     res.header('Access-Control-Allow-Methods: GET, POST, PATCH,PUT,DELETE,OPTIONS'); 
+
     var RegistrationItem = {
         course_id     : req.body.course_id,
         course_title  : req.body.course_title,
@@ -224,10 +273,6 @@ app.post('/registercourse',function(req,res){
         graduation    : req.body.graduation,
         message       : req.body.message
     }
-    // var vUser= CourseRegistrationdata(RegistrationItem);
-    // vUser.save();
-    // console.log(`The registered user added is : Email ID - ${RegistrationItem.emailaddress}, Course - ${RegistrationItem.course_title}`);
-    // res.status(200).send({ RegistrationItem});
 
     CourseRegistrationdata.find({'emailaddress' :  RegistrationItem.emailaddress, 'course_id' :  RegistrationItem.course_id})
     .then (function(cousrseReg){
@@ -249,6 +294,71 @@ app.post('/registercourse',function(req,res){
             }
     });
   });
+
+  app.post('/AdminUser/insert/',function(req,res){
+    res.header("Access-Control-Allow-Origin","*")
+    res.header('Access-Control-Allow-Methods: GET, POST, PATCH,PUT,DELETE,OPTIONS'); 
+    var User = {
+        Username  : req.body.Username,
+        Password  : req.body.Password,
+        Name      : req.body.Name,
+        Email     : req.body.Email,
+        AdminRole : req.body.AdminRole,
+        Add       : req.body.Add,
+        Edit      : req.body.Edit,
+        Delete    : req.body.Delete
+    }
+    console.log(User);
+    var UserItem = new SignUpData(User);
+    UserItem.save().then(function (data) {
+      res.send(true)
+      }).catch(function (error) {
+      res.send(false)
+  });
+  });
+
+  app.post('/AdminUser/remove',verifyToken,(req,res)=>{  
+    console.log(req.body);
+    id         = req.body._id
+    console.log(` inside remove ${id}`);
+    SignUpData.findByIdAndDelete({'_id' : id},
+    (err, result) => {
+        if (err) {
+            res.send(false)
+        } else {
+            res.send(true)
+        }
+    });
+});
+
+app.post('/AdminUser/update',verifyToken,(req,res)=>{
+  res.header("Access-Control-Allow-Origin","*")
+  res.header('Access-Control-Allow-Methods: GET, POST, PATCH,PUT,DELETE,OPTIONS');  
+  console.log(` inside update ${req.body.id}`);
+  id                      = req.body._id;
+  let item = {
+    Username  : req.body.Username,
+    Password  : req.body.Password,
+    Name      : req.body.Name,
+    Email     : req.body.Email,
+    AdminRole : req.body.AdminRole,
+    Add       : req.body.Add,
+    Edit      : req.body.Edit,
+    Delete    : req.body.Delete
+  } 
+  let updateUser= { $set: item };
+  SignUpData.findByIdAndUpdate({"_id":id}, updateUser)
+    .then((respond) => {
+      if (respond) {
+          console.log('mongoDb updated successfully for Admin user')
+          res.send(true)
+      }
+      else {
+          console.log('mongoDb update error', error)
+          res.send(false)
+      }
+    });
+ });
 
   app.put('/Course/updateIndex',verifyToken,(req,res)=>{
     res.header("Access-Control-Allow-Origin","*")

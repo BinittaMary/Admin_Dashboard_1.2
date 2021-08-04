@@ -17,11 +17,42 @@ import { ViewStaffsComponent } from './view-staffs/view-Staffs.component';
 import { PartnershipApplicationComponent } from './partnership-application/partnership-application.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { EnquiryResponseComponent } from './enquiry-response/enquiry-response.component';
+import { CorporateApplicationsComponent } from './corporate-applications/corporate-applications.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { AddAdminUserComponent } from './add-admin-user/add-admin-user.component';
+import { ViewAdminUserComponent } from './view-admin-user/view-admin-user.component';
+import { EditAdminUserComponent } from './edit-admin-user/edit-admin-user.component';
+import { DeleteAdminUserComponent } from './delete-admin-user/delete-admin-user.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
+    {
+      path: '',
+      component: AdminHomeComponent,
+    },   
+    {
+      path: 'AdminUsers',
+      component: AdminUsersComponent,
+    },
+    {
+      path: 'ViewAdminUser',
+      component: ViewAdminUserComponent,
+    },
+    {
+      path: 'EditAdminUser',
+      component: EditAdminUserComponent,
+    },
+    {
+      path: 'DeleteAdminUser',
+      component: DeleteAdminUserComponent,
+    },
+    {
+      path: 'AddAdminUser',
+      component: AddAdminUserComponent,
+    },
     {
       path: 'Enquires',
       component: EnquiryComponent,
@@ -37,6 +68,10 @@ const routes: Routes = [{
     {
       path: 'PartnershipApplication',
       component: PartnershipApplicationComponent,
+    },
+    {
+      path: 'CorporateApplication',
+      component: CorporateApplicationsComponent,
     },
     {
       path: 'addstaff',

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./testimonialform.component.scss']
 })
 export class TestimonialformComponent implements OnInit {
-  
+  images:any;
  
     testimonialDetails={
       name:"",
@@ -25,10 +25,12 @@ export class TestimonialformComponent implements OnInit {
     ngOnInit(): void {
     }
     addTestimonial(){
-      this.testService.newTestimonial(this.testimonialDetails);
+      this.testimonialDetails.image = this.testimonialDetails.image.replace('C:\\fakepath\\','');
+      this.testService.newTestimonial(this.images,this.testimonialDetails);
+      console.log(`upload image ${this.images}`);
       console.log("called");
       alert("success")
-      this.router.navigate([TestimonialsComponent]);
+      this.router.navigate(['/pages/testimonials'])
     }
   
     deleteTestimonial(testimonial : any){}

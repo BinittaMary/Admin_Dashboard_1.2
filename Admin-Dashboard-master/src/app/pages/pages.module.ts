@@ -15,6 +15,7 @@ import { StaffFormComponent } from './staff-form/staff-form.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { FormsModule } from '@angular/forms';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { DeleteCourseComponent } from './delete-course/delete-course.component';
 import { EditCourseComponent } from './edit-course/edit-course.component';
@@ -32,6 +33,14 @@ import { PartnershipApplicationComponent } from './partnership-application/partn
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { EnquiryResponseComponent } from './enquiry-response/enquiry-response.component';
 import { CorporateApplicationsComponent } from './corporate-applications/corporate-applications.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { BarChartModule, LineChartModule, PieChartModule } from '@swimlane/ngx-charts';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { SearchEmailPipe } from './search-email.pipe';
+import { AddAdminUserComponent } from './add-admin-user/add-admin-user.component';
+import { ViewAdminUserComponent } from './view-admin-user/view-admin-user.component';
+import { EditAdminUserComponent } from './edit-admin-user/edit-admin-user.component';
+import { DeleteAdminUserComponent } from './delete-admin-user/delete-admin-user.component';
 
 @NgModule({
   imports: [
@@ -51,7 +60,11 @@ import { CorporateApplicationsComponent } from './corporate-applications/corpora
     NbIconModule, 
     NbTreeGridModule, 
     NbDatepickerModule.forRoot(),
-    NbSelectModule
+    NbSelectModule,
+    NgxChartsModule,
+    BarChartModule, 
+    LineChartModule, 
+    PieChartModule
   ],
   declarations: [
     PagesComponent,
@@ -77,6 +90,13 @@ import { CorporateApplicationsComponent } from './corporate-applications/corpora
     EnquiryComponent,
     EnquiryResponseComponent,
     CorporateApplicationsComponent,
+    AdminHomeComponent,
+    AdminUsersComponent,
+    SearchEmailPipe,
+    AddAdminUserComponent,
+    ViewAdminUserComponent,
+    EditAdminUserComponent,
+    DeleteAdminUserComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -24,6 +24,14 @@ export class StaffService {
     return this.http.get("http://localhost:5000/staffs");
   }
 
+  getAdminUsers(){
+    return this.http.get("http://localhost:5000/AdminUserList");
+  }
+
+  getAdminUser(id:any){
+    return this.http.get("http://localhost:5000/AdminUser/"+id);
+  }
+
   updateStaffIndex(staff:any){
     console.log(staff);
     return this.http.put("http://localhost:5000/Staffs/updateIndex/",staff);
@@ -43,8 +51,18 @@ export class StaffService {
     // .subscribe(data =>{console.log(data)})
   }
 
+  newAdminUser(item:any){
+    console.log(item);
+    return this.http.post("http://localhost:5000/AdminUser/insert/",item);
+    // .subscribe(data =>{console.log(data)})
+  }
+
   deletestaff(staff:any){
     return this.http.post("http://localhost:5000/Staff/remove/",staff);
+  }
+
+  deleteAdmin(item:any){
+    return this.http.post("http://localhost:5000/AdminUser/remove/",item);
   }
 
   editStaff(item:any)
@@ -54,6 +72,12 @@ export class StaffService {
     // .subscribe(data =>{console.log(`response recieved ${data}`)})
   };
 
+  editAdminUser(item:any)
+  {
+    console.log('client update')
+    return this.http.post("http://localhost:5000/AdminUser/update",item)
+    // .subscribe(data =>{console.log(`response recieved ${data}`)})
+  };
   
   editStaffWithImage(image:any, item:any){
     

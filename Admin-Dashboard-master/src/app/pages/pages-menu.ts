@@ -4,7 +4,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Admin Users',
     icon: 'person-outline',
-    link: '/pages/users',
+    link: '/pages/AdminUsers',
     home: true,
   },
   {
@@ -35,6 +35,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Partner Applications',
     icon: 'people-outline',
     link: '/pages/PartnershipApplication',
+    home: true,
+  },
+  {
+    title: 'Corporate Applications',
+    icon: 'people-outline',
+    link: '/pages/CorporateApplication',
     home: true,
   },
   {
