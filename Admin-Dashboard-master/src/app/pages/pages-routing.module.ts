@@ -24,6 +24,8 @@ import { AddAdminUserComponent } from './add-admin-user/add-admin-user.component
 import { ViewAdminUserComponent } from './view-admin-user/view-admin-user.component';
 import { EditAdminUserComponent } from './edit-admin-user/edit-admin-user.component';
 import { DeleteAdminUserComponent } from './delete-admin-user/delete-admin-user.component';
+import { ViewTestimonyComponent } from './view-testimony/view-testimony.component';
+import { EditTestimonyComponent } from './edit-testimony/edit-testimony.component';
 
 const routes: Routes = [{
   path: '',
@@ -33,6 +35,18 @@ const routes: Routes = [{
       path: '',
       component: AdminHomeComponent,
     },   
+    {
+      path: 'home',
+      component: AdminHomeComponent,
+    }, 
+    {
+      path: 'viewtestimonial',
+      component: ViewTestimonyComponent,
+    },
+    {
+      path: 'edittestimonial',
+      component: EditTestimonyComponent,
+    },
     {
       path: 'AdminUsers',
       component: AdminUsersComponent,

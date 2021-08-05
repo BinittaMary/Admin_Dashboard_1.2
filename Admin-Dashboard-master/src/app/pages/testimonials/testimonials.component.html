@@ -17,20 +17,20 @@
        <nb-card-body>
            <nb-list>
                <nb-list-item>
-                   <h6 style="width:16rem">#</h6>
-                   <h6 style="width:25rem">Name</h6>
-                   <h6 style="width:30rem">Position</h6>
-                   <h6 style="width:45rem">Course</h6>
+                   <h6 style="width:18em">#</h6>
+                   <h6 style="width:39em">Name</h6>
+                   <h6 style="width:29em">Position</h6>
+                   <h6 style="width:45em">Course</h6>
        
                </nb-list-item>
        
            </nb-list>
            <nb-list cdkDropList (cdkDropListDropped)="onDrop($event)"> 
            <nb-list-item class="anchor" *ngFor="let testimonial of testimonials; let i=index;" cdkDrag>
-               <h7 style='width: 16rem'> {{i+1}}</h7>
-               <h7 style='width: 30rem'> {{testimonial.name}}</h7>
-               <h7 style='width: 35rem'> {{testimonial.position}}</h7>
-               <h7 style='width: 50rem'> {{testimonial.course_title}}</h7>
+               <h7 style='width: 5em'> {{i+1}}</h7>
+               <h7 style='width: 15em'> {{testimonial.name}}</h7>
+               <h7 style='width: 10em'> {{testimonial.position}}</h7>
+               <h7 style='width: 15em'> {{testimonial.course_title}}</h7>
                <div>
                 <a (click)="viewTestimonial(testimonial)">
                     <ion-icon name="eye-outline"></ion-icon>

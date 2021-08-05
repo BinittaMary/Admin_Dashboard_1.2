@@ -15,7 +15,7 @@ const TestimonialSchema = new Schema({
     name                    : String,
     position                : String,
     organisation            : String,
-    testimony               : String,
+    testimonial             : String,
     image                   : String
 });
 

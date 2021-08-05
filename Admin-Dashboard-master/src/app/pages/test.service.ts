@@ -35,13 +35,12 @@ export class TestService {
      formData.append('organisation', item.organisation); 
      formData.append('testimonial', item.testimonial); 
      formData.append('course_title', item.course_title);
-     formData.append('image', item.image); 
-      
+     formData.append('image', item.image);    
  
  
  
-     return this.http.post("http://localhost:5000/insert",{"testimonial":item})
-     .subscribe(data =>{console.log(data)})
+     return this.http.post("http://localhost:5000/testimony/insert",formData)
+    //  .subscribe(data =>{console.log(data)})
    }
    deletetestimonial(testimonial:any){
      return this.http.post("http://localhost:5000/testimonial/remove/",testimonial);
@@ -51,7 +50,7 @@ export class TestService {
    {
      console.log('client update')
      return this.http.post("http://localhost:5000/testimonial/update",item)
-     .subscribe(data =>{console.log(`response recieved ${data}`)})
+    //  .subscribe(data =>{console.log(`response recieved ${data}`)})
    };
   
    editTestimonialWithImage(image:any, item:any){
@@ -69,7 +68,7 @@ export class TestService {
       
  
      return this.http.post("http://localhost:5000/testimonial/updateWithFile",formData)
-     .subscribe(data =>{console.log(data)})
+    //  .subscribe(data =>{console.log(data)})
  
    }
   }

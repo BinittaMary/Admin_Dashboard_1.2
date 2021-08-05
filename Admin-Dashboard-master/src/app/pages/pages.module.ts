@@ -41,6 +41,8 @@ import { AddAdminUserComponent } from './add-admin-user/add-admin-user.component
 import { ViewAdminUserComponent } from './view-admin-user/view-admin-user.component';
 import { EditAdminUserComponent } from './edit-admin-user/edit-admin-user.component';
 import { DeleteAdminUserComponent } from './delete-admin-user/delete-admin-user.component';
+import { ViewTestimonyComponent } from './view-testimony/view-testimony.component';
+import { EditTestimonyComponent } from './edit-testimony/edit-testimony.component';
 
 @NgModule({
   imports: [
@@ -97,6 +99,8 @@ import { DeleteAdminUserComponent } from './delete-admin-user/delete-admin-user.
     ViewAdminUserComponent,
     EditAdminUserComponent,
     DeleteAdminUserComponent,
+    ViewTestimonyComponent,
+    EditTestimonyComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
